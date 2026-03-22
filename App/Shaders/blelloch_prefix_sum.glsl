@@ -2,7 +2,7 @@
 #extension GL_ARB_gpu_shader_int64 : require
 
 #define BLOCK_THREADS 256
-#define ELEMENTS_PER_THREAD 8
+#define ELEMENTS_PER_THREAD 2
 #define ELEMENTS_PER_BLOCK (BLOCK_THREADS * ELEMENTS_PER_THREAD)
 #define NUM_BANKS 32
 
@@ -23,8 +23,7 @@ layout(std430, binding = 2) readonly buffer number_of_elements
     uint N;
 };
 
-// nur noch 256 Werte!
-shared uint temp[BLOCK_THREADS + BLOCK_THREADS / NUM_BANKS];
+shared uint temp[ELEMENTS_PER_BLOCK + ELEMENTS_PER_BLOCK / NUM_BANKS];
 
 uint sIndex(uint i)
 {
@@ -36,58 +35,26 @@ void main()
     uint tid = gl_LocalInvocationID.x;
     uint base = gl_WorkGroupID.x * ELEMENTS_PER_BLOCK;
 
-    // --------------------------------------------------
-    // 1. LOAD + SEQUENTIAL SCAN (REGISTER)
-    // --------------------------------------------------
 
-    uint vals[ELEMENTS_PER_THREAD];
-
-    //uint idx = base + tid + i * BLOCK_THREADS;
-    #if 1
+    /* Load the elements */
     for(int i = 0; i < ELEMENTS_PER_THREAD; i++)
     {
-        uint idx = base + tid * ELEMENTS_PER_THREAD + i;
-        if(idx < N)
-        {
-            vals[i] = data[idx];
-        }
-        else 
-        {
-            vals[i] = 0;
-        }
-        
+        uint globalIdx = base + tid + i * BLOCK_THREADS;
+        uint sharedIdx = tid + i * BLOCK_THREADS;
+
+        if(globalIdx < N)
+            temp[sIndex(sharedIdx)] = data[globalIdx];
+        else
+            temp[sIndex(sharedIdx)] = 0;
     }
-    #endif
-
-#if 1
-
-    uint sum = 0;
-    uint tmp = 0;
-
-    for(int i = 0; i < ELEMENTS_PER_THREAD; i++)
-    {
-        tmp = vals[i];
-        vals[i] = sum;
-        sum += tmp;
-    }
-
-    // sum = total sum of this thread
-    temp[sIndex(tid)] = sum;
 
     barrier();
-#endif
 
-    
 
-    // --------------------------------------------------
-    // 2. BLELLOCH SCAN (256 THREAD SUMS)
-    // --------------------------------------------------
-
-#if 1
     uint offset = 1;
 
     // UPSWEEP
-    for(uint d = BLOCK_THREADS >> 1; d > 0; d >>= 1)
+    for(uint d = ELEMENTS_PER_BLOCK >> 1; d > 0; d >>= 1)
     {
         barrier();
 
@@ -105,22 +72,20 @@ void main()
         offset <<= 1;
     }
 
-#endif
-#if 1
     // write block sum
     if(tid == 0)
     {
-        uint last = sIndex(BLOCK_THREADS - 1);
-        //blockSums[gl_WorkGroupID.x] = temp[last];
+        uint last = sIndex(ELEMENTS_PER_BLOCK - 1);
+        blockSums[gl_WorkGroupID.x] = temp[last];
         temp[last] = 0;
     }
 
     // vor downsweep
     barrier();
 
-    offset = BLOCK_THREADS >> 1;
+    offset = ELEMENTS_PER_BLOCK >> 1;
 
-    for(uint d = 1; d < BLOCK_THREADS; d <<= 1)
+    for(uint d = 1; d < ELEMENTS_PER_BLOCK; d <<= 1)
     {
         barrier();
 
@@ -141,23 +106,14 @@ void main()
     }
 
     barrier();
-#endif
 
-    uint blockOffset = temp[sIndex(tid)];
-
-    #if 1
     for(int i = 0; i < ELEMENTS_PER_THREAD; i++)
     {
-        uint idx = base + tid * ELEMENTS_PER_THREAD + i;
-        if(idx < N)
-        {
-            data[idx] = vals[i] + temp[sIndex(tid)];
-        }
-        else 
-        {
-            vals[i] = 0;
-        }
-        
+        uint globalIdx = base + tid + i * BLOCK_THREADS;
+        uint sharedIdx = tid + i * BLOCK_THREADS;
+
+        if(globalIdx < N)
+            data[globalIdx] = temp[sIndex(sharedIdx)];
     }
-    #endif
+
 }

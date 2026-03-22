@@ -14,7 +14,7 @@ using namespace Mupfel;
 
 
 constexpr uint32_t BLOCK_THREADS = 256;
-constexpr uint32_t ELEMENTS_PER_THREAD = 8;
+constexpr uint32_t ELEMENTS_PER_THREAD = 2;
 constexpr uint32_t ELEMENTS_PER_BLOCK = BLOCK_THREADS * ELEMENTS_PER_THREAD;
 uint32_t prefix_sum_shader = 0;
 uint32_t add_offsets_shader = 0;
@@ -170,9 +170,7 @@ void Application::GPUPrefixSum()
 {
 	InitShaders();
 
-	//PrefixScan(dataBuffer, gpu_buffer->size());
-
-	PrefixScanSimple(gpu_buffer->GetSSBOID(), gpu_buffer->size());
+	PrefixScan(gpu_buffer->GetSSBOID(), gpu_buffer->size());
 
 	glFinish();
 }
@@ -312,7 +310,7 @@ void Application::Run()
 {
 	std::cout << "Hello World!" << std::endl;
 
-	const size_t buffer_size = 2050;
+	const size_t buffer_size = 10000000;
 	const uint32_t rnd_max = 30;
 
 	const uint64_t max_result_buffer_size = buffer_size * rnd_max;
