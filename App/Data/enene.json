@@ -1,0 +1,67 @@
+{
+  "entities" : [
+    {
+      "name" : "test",
+      "components" : [
+        
+      ]
+    },
+    {
+      "name" : "test1",
+      "components" : [
+        {
+          "name" : "Transform",
+          "pos_x" : 0.0,
+          "pos_y" : 0.0,
+          "pos_z" : 0.0,
+          "scale_x" : 1.0,
+          "scale_y" : 1.0,
+          "rotation" : 0.0
+        }
+      ]
+    },
+    {
+      "name" : "test2",
+      "components" : [
+        {
+          "name" : "Transform",
+          "pos_x" : 0.0,
+          "pos_y" : 0.0,
+          "pos_z" : 0.0,
+          "scale_x" : 1.0,
+          "scale_y" : 1.0,
+          "rotation" : 0.0
+        }
+      ]
+    },
+    {
+      "name" : "test3",
+      "components" : [
+        {
+          "name" : "Transform",
+          "pos_x" : 0.0,
+          "pos_y" : 0.0,
+          "pos_z" : 0.0,
+          "scale_x" : 1.0,
+          "scale_y" : 1.0,
+          "rotation" : 0.0
+        }
+      ]
+    },
+    {
+      "name" : "test4",
+      "components" : [
+        {
+          "name" : "Transform",
+          "pos_x" : 0.0,
+          "pos_y" : 0.0,
+          "pos_z" : 0.0,
+          "scale_x" : 1.0,
+          "scale_y" : 1.0,
+          "rotation" : 0.0
+        }
+      ]
+    }
+  ]
+    
+}

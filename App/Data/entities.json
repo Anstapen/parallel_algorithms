@@ -1,0 +1,1352 @@
+[
+  {
+    "name": "Marta",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 279.2,
+        "pos_y": 656.9,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.2
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 16.3
+      }
+    ]
+  },
+  {
+    "name": "Glenna",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 843.2,
+        "pos_y": 328.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.6
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.7
+      }
+    ]
+  },
+  {
+    "name": "Mcintosh",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 630.4,
+        "pos_y": 141.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.5
+      }
+    ]
+  },
+  {
+    "name": "Meyer",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 647.3,
+        "pos_y": 130.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 5.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 21.7
+      }
+    ]
+  },
+  {
+    "name": "Adeline",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 309.2,
+        "pos_y": 619.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 22.9
+      }
+    ]
+  },
+  {
+    "name": "Robinson",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 613.6,
+        "pos_y": 830.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 23.2
+      }
+    ]
+  },
+  {
+    "name": "Tran",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 816.7,
+        "pos_y": 121.9,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 26.9
+      }
+    ]
+  },
+  {
+    "name": "Polly",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 723.9,
+        "pos_y": 915.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.3
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 30.1
+      }
+    ]
+  },
+  {
+    "name": "Lidia",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 972.6,
+        "pos_y": 920.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 4.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 19.8
+      }
+    ]
+  },
+  {
+    "name": "Osborne",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 800.4,
+        "pos_y": 883.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.3
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.9
+      }
+    ]
+  },
+  {
+    "name": "Felicia",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 563.5,
+        "pos_y": 215.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 17.5
+      }
+    ]
+  },
+  {
+    "name": "Rena",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 560.8,
+        "pos_y": 541.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.2
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 31.6
+      }
+    ]
+  },
+  {
+    "name": "Hardy",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 583.5,
+        "pos_y": 232.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.6
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 26.1
+      }
+    ]
+  },
+  {
+    "name": "Jennie",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 380.2,
+        "pos_y": 232.7,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.4
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.1
+      }
+    ]
+  },
+  {
+    "name": "Cohen",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 953.1,
+        "pos_y": 114.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 21.9
+      }
+    ]
+  },
+  {
+    "name": "Katy",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 530.9,
+        "pos_y": 737.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 5.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 28.8
+      }
+    ]
+  },
+  {
+    "name": "Baker",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 164.8,
+        "pos_y": 748.7,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.6
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 21.2
+      }
+    ]
+  },
+  {
+    "name": "Phelps",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 351.2,
+        "pos_y": 821.1,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 17.5
+      }
+    ]
+  },
+  {
+    "name": "Terrell",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 775.5,
+        "pos_y": 353.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 28.8
+      }
+    ]
+  },
+  {
+    "name": "Jeanne",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 920.8,
+        "pos_y": 251.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.1
+      }
+    ]
+  },
+  {
+    "name": "Wilma",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 926.6,
+        "pos_y": 561.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 6.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.8
+      }
+    ]
+  },
+  {
+    "name": "Betty",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 150.1,
+        "pos_y": 814.1,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 5.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.1
+      }
+    ]
+  },
+  {
+    "name": "Horton",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 499.1,
+        "pos_y": 437.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 4.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.1
+      }
+    ]
+  },
+  {
+    "name": "Cook",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 554.4,
+        "pos_y": 882.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 21.5
+      }
+    ]
+  },
+  {
+    "name": "Mcintyre",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 693.2,
+        "pos_y": 523.9,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 4.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.3
+      }
+    ]
+  },
+  {
+    "name": "Rosanna",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 610.1,
+        "pos_y": 667.4,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 24.1
+      }
+    ]
+  },
+  {
+    "name": "Louisa",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 535.5,
+        "pos_y": 318.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 6.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 20.6
+      }
+    ]
+  },
+  {
+    "name": "Leola",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 658.3,
+        "pos_y": 294.9,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 6.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 19.9
+      }
+    ]
+  },
+  {
+    "name": "Buckner",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 889.5,
+        "pos_y": 218.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 6.1
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 26.1
+      }
+    ]
+  },
+  {
+    "name": "Huffman",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 905.8,
+        "pos_y": 670.7,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.3
+      }
+    ]
+  },
+  {
+    "name": "Boyer",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 816.1,
+        "pos_y": 353.1,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 8.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 25.6
+      }
+    ]
+  },
+  {
+    "name": "Caroline",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 577.5,
+        "pos_y": 416.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.3
+      }
+    ]
+  },
+  {
+    "name": "Wallace",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 297.8,
+        "pos_y": 781.3,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 4.4
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.1
+      }
+    ]
+  },
+  {
+    "name": "Yesenia",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 785.9,
+        "pos_y": 153.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.2
+      }
+    ]
+  },
+  {
+    "name": "Dominguez",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 579.6,
+        "pos_y": 367.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.3
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.8
+      }
+    ]
+  },
+  {
+    "name": "Gregory",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 828.9,
+        "pos_y": 171.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 22.9
+      }
+    ]
+  },
+  {
+    "name": "Skinner",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 378.4,
+        "pos_y": 705.3,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 28.5
+      }
+    ]
+  },
+  {
+    "name": "Mckee",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 626.6,
+        "pos_y": 456.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.5
+      }
+    ]
+  },
+  {
+    "name": "Sonia",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 470.2,
+        "pos_y": 930.5,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.3
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 18.4
+      }
+    ]
+  },
+  {
+    "name": "Perez",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 368.4,
+        "pos_y": 212.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 1.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 24.2
+      }
+    ]
+  },
+  {
+    "name": "Deleon",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 926.6,
+        "pos_y": 962.7,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 21.6
+      }
+    ]
+  },
+  {
+    "name": "Pratt",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 452.9,
+        "pos_y": 803.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 2.4
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 27.4
+      }
+    ]
+  },
+  {
+    "name": "Bentley",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 621.8,
+        "pos_y": 183.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 8.2
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 30.7
+      }
+    ]
+  },
+  {
+    "name": "Davidson",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 843.7,
+        "pos_y": 310.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 25.7
+      }
+    ]
+  },
+  {
+    "name": "Reeves",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 136.2,
+        "pos_y": 716.3,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 7.8
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 17.7
+      }
+    ]
+  },
+  {
+    "name": "Myra",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 928.2,
+        "pos_y": 121.8,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 8.5
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 16.6
+      }
+    ]
+  },
+  {
+    "name": "Carey",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 742.2,
+        "pos_y": 535.6,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 6.9
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 19.2
+      }
+    ]
+  },
+  {
+    "name": "Florence",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 378.2,
+        "pos_y": 190.7,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 3.6
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 19.4
+      }
+    ]
+  },
+  {
+    "name": "Kate",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 304.4,
+        "pos_y": 533.4,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 8.2
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 22.2
+      }
+    ]
+  },
+  {
+    "name": "Liza",
+    "components": [
+      {
+        "name": "Transform",
+        "pos_x": 401.8,
+        "pos_y": 921.2,
+        "pos_z": 0,
+        "scale_x": 32,
+        "scale_y": 32,
+        "rotation": 9.7
+      },
+      {
+        "name": "Texture"
+      },
+      {
+        "name": "Movement",
+        "velocity_x": 0,
+        "velocity_y": 0
+      },
+      {
+        "name": "Collider",
+        "type": "Circle",
+        "radius": 22.8
+      }
+    ]
+  }
+]
