@@ -108,13 +108,11 @@ namespace Mupfel {
 		void CopyBuffers();
 
 		void PrefixScan(uint32_t dataBuffer, uint32_t elementCount);
-		void PrefixScanSimple(uint32_t dataBuffer, uint32_t elementCount);
-
-		void RunPrefixScanShader(uint32_t data, uint32_t blocks, uint32_t num_blocks);
-
-		void RunAddOffsetsShader(uint32_t data, uint32_t blocks, uint32_t num_blocks);
+		void PrefixScanIterative(uint32_t dataBuffer, uint32_t elementCount);
 
 		void InitShaders();
+
+		void InitPrefixScanBuffers(uint32_t maxElements);
 
 	private:
 		/** @brief The startup specification of the application. */
@@ -129,7 +127,7 @@ namespace Mupfel {
 		std::unique_ptr<GPUVector<uint32_t>> original_buffer = nullptr;
 		std::unique_ptr<GPUVector<uint32_t>> cpu_buffer = nullptr;
 		std::unique_ptr<GPUVector<uint32_t>> gpu_buffer = nullptr;
-		std::unique_ptr<GPUVector<uint32_t>> blocksum_buffer = nullptr;
+		std::vector<std::unique_ptr<GPUVector<uint32_t>>> blocksum_levels;
 	};
 }
 

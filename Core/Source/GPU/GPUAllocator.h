@@ -22,6 +22,5 @@ namespace Mupfel {
 		static Handle allocateGPUBuffer(uint32_t size);
 		static void freeGPUBuffer(Handle& h);
 		static void reallocateGPUBuffer(Handle& h, uint32_t new_size);
-		static void MemBarrier();
 	};
 }

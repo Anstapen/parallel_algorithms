@@ -75,8 +75,3 @@ void GPUAllocator::reallocateGPUBuffer(Handle& h, uint32_t new_size)
 	h = newH;
 
 }
-
-void Mupfel::GPUAllocator::MemBarrier()
-{
-	//glMemoryBarrier(GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT);
-}

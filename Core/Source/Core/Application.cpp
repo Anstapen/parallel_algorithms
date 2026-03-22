@@ -21,6 +21,7 @@ uint32_t add_offsets_shader = 0;
 
 std::unique_ptr<GPUVector<uint32_t>> number_of_elements;
 
+GLsync fence = 0;
 
 
 Application& Application::Get()
@@ -44,12 +45,11 @@ void Mupfel::Application::CreateGPUBuffer(size_t size)
 	gpu_buffer = std::make_unique<GPUVector<uint32_t>>();
 	gpu_buffer->resize(original_buffer->size(), 0);
 
-	blocksum_buffer = std::make_unique<GPUVector<uint32_t>>();
-	blocksum_buffer->resize((original_buffer->size() + ELEMENTS_PER_BLOCK - 1) / ELEMENTS_PER_BLOCK, 0);
-
 	number_of_elements.reset(new GPUVector<uint32_t>());
 	number_of_elements->resize(1, 0);
 	number_of_elements->operator[](0) = size;
+
+	InitPrefixScanBuffers(size);
 }
 
 void Mupfel::Application::FillGPUBufferRND(uint32_t min, uint32_t max)
@@ -62,7 +62,6 @@ void Mupfel::Application::FillGPUBufferRND(uint32_t min, uint32_t max)
 
 void Mupfel::Application::CPUPrefixSum()
 {
-	std::cout << "Calculating the Prefix Sum...\n";
 
 	uint32_t sum = 0;
 
@@ -124,8 +123,6 @@ void Application::PrefixScan(uint32_t dataBuffer, uint32_t elementCount)
 		GL_DYNAMIC_STORAGE_BIT
 	);
 
-	std::cout << "NumBlocks: " << numBlocks << std::endl;
-
 	// Phase 1: scan blocks
 	number_of_elements->operator[](0) = elementCount;
 	DispatchBlockScan(dataBuffer, blockSumBuffer, numBlocks);
@@ -143,40 +140,81 @@ void Application::PrefixScan(uint32_t dataBuffer, uint32_t elementCount)
 	glDeleteBuffers(1, &blockSumBuffer);
 }
 
-void Application::PrefixScanSimple(uint32_t dataBuffer, uint32_t elementCount)
+void Application::PrefixScanIterative(uint32_t dataBuffer, uint32_t elementCount)
 {
-	uint32_t numBlocks =
-		(elementCount + ELEMENTS_PER_BLOCK - 1) / ELEMENTS_PER_BLOCK;
+	std::vector<uint32_t> levelSizes;
 
-	std::cout << "Calculating blocksize: " << "(" << elementCount << " + " << ELEMENTS_PER_BLOCK << " - 1) / " << ELEMENTS_PER_BLOCK << std::endl;
+	uint32_t currentCount = elementCount;
+	uint32_t level = 0;
 
-	if (numBlocks == 0)
-		return;
-
-	if (numBlocks > 1)
+	// -----------------------------
+	// Phase 1: DOWN-SWEEP (collect block sums)
+	// -----------------------------
+	while (true)
 	{
-		std::cout << "Element count exceeds block size, simple scan not possible.\n";
-		return;
+		uint32_t numBlocks =
+			(currentCount + ELEMENTS_PER_BLOCK - 1) / ELEMENTS_PER_BLOCK;
+
+		if (numBlocks <= 1)
+			break;
+
+		levelSizes.push_back(numBlocks);
+
+		number_of_elements->operator[](0) = currentCount;
+
+		DispatchBlockScan(
+			(level == 0) ? dataBuffer
+			: blocksum_levels[level - 1]->GetSSBOID(),
+			blocksum_levels[level]->GetSSBOID(),
+			numBlocks
+		);
+
+		currentCount = numBlocks;
+		level++;
 	}
 
-	std::cout << "NumBlocks: " << numBlocks << ", element_count: " << elementCount << std::endl;
+	// -----------------------------
+	// Phase 2: scan top level (single block)
+	// -----------------------------
+	number_of_elements->operator[](0) = currentCount;
 
-	// Phase 1: scan blocks
-	number_of_elements->operator[](0) = elementCount;
-	DispatchBlockScan(dataBuffer, blocksum_buffer->GetSSBOID(), numBlocks);
+	DispatchBlockScan(
+		(level == 0) ? dataBuffer
+		: blocksum_levels[level - 1]->GetSSBOID(),
+		0, // optional, kein Blocksum nötig
+		1
+	);
+
+	// -----------------------------
+	// Phase 3: UP-SWEEP (add offsets)
+	// -----------------------------
+	for (int i = level - 1; i >= 0; i--)
+	{
+		uint32_t numBlocks = levelSizes[i];
+
+		number_of_elements->operator[](0) =
+			(i == 0) ? elementCount : levelSizes[i - 1];
+
+		DispatchAddOffsets(
+			(i == 0) ? dataBuffer
+			: blocksum_levels[i - 1]->GetSSBOID(),
+			blocksum_levels[i]->GetSSBOID(),
+			numBlocks
+		);
+	}
 }
 
 void Application::GPUPrefixSum()
 {
-	InitShaders();
-
-	PrefixScan(gpu_buffer->GetSSBOID(), gpu_buffer->size());
-
-	glFinish();
+	//PrefixScan(gpu_buffer->GetSSBOID(), gpu_buffer->size());
+	PrefixScanIterative(gpu_buffer->GetSSBOID(), gpu_buffer->size());
+	fence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
 }
 
 bool Mupfel::Application::CheckBuffer()
 {
+	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+	glFinish();
 	for (uint32_t i = 0; i < original_buffer->size(); i++)
 	{
 		if (cpu_buffer->operator[](i) != gpu_buffer->operator[](i))
@@ -245,10 +283,33 @@ void Mupfel::Application::InitShaders()
 	prefix_sum_shader = rlLoadShaderProgramCompute(shader_data);
 	UnloadFileText(shader_code);
 
-	shader_code = LoadFileText("Shaders/prefix_sum_basic.glsl");
+	shader_code = LoadFileText("Shaders/add_offsets.glsl");
 	shader_data = rlLoadShader(shader_code, RL_COMPUTE_SHADER);
 	add_offsets_shader = rlLoadShaderProgramCompute(shader_data);
 	UnloadFileText(shader_code);
+}
+
+void Application::InitPrefixScanBuffers(uint32_t maxElements)
+{
+	blocksum_levels.clear();
+
+	uint32_t current = maxElements;
+
+	while (true)
+	{
+		uint32_t numBlocks =
+			(current + ELEMENTS_PER_BLOCK - 1) / ELEMENTS_PER_BLOCK;
+
+		if (numBlocks <= 1)
+			break;
+
+		auto buffer = std::make_unique<GPUVector<uint32_t>>();
+		buffer->resize(numBlocks, 0);
+
+		blocksum_levels.push_back(std::move(buffer));
+
+		current = numBlocks;
+	}
 }
 
 Application::~Application()
@@ -308,10 +369,12 @@ int Mupfel::Application::GetRandomNumber(int min, int max)
 
 void Application::Run()
 {
-	std::cout << "Hello World!" << std::endl;
 
-	const size_t buffer_size = 10000000;
-	const uint32_t rnd_max = 30;
+	const size_t buffer_size = 1000000;
+	const uint32_t rnd_max = 300;
+	const uint32_t num_runs = 10;
+	const uint32_t warmup_runs = 20;
+	std::cout << "Hello World!" << std::endl;
 
 	const uint64_t max_result_buffer_size = buffer_size * rnd_max;
 
@@ -322,32 +385,131 @@ void Application::Run()
 		return;
 	}
 
-	std::cout << "using a buffer size of " << buffer_size << std::endl;
+	InitShaders();
 	CreateGPUBuffer(buffer_size);
 
-	//FillGPUBufferRND(0, rnd_max);
+	// -----------------------------
+	// GPU TIMER SETUP
+	// -----------------------------
+	std::vector<GLuint> queries(num_runs);
+	glGenQueries(num_runs, queries.data());
 
-	FillGPUBufferRND(1, 1);
+	// -----------------------------
+	// WARMUP (extrem wichtig!)
+	// -----------------------------
+	for (uint32_t i = 0; i < warmup_runs; i++)
+	{
+		if (fence)
+		{
+			glClientWaitSync(fence, GL_SYNC_FLUSH_COMMANDS_BIT, UINT64_MAX);
+			glDeleteSync(fence);
+			fence = 0;
+		}
+		FillGPUBufferRND(0, rnd_max);
+		CopyBuffers();
+		CPUPrefixSum();
+		GPUPrefixSum();
+	}
 
-	CopyBuffers();
+	// -----------------------------
+	// TIMING ARRAYS
+	// -----------------------------
+	std::vector<double> cpu_times(num_runs);
+	std::vector<double> gpu_times(num_runs);
 
-	double before_cpu_prefix_sum = GetTime();
-	CPUPrefixSum();
-	double after_cpu_prefix_sum = GetTime();
+	// -----------------------------
+	// MAIN BENCH LOOP
+	// -----------------------------
+	for (uint32_t i = 0; i < num_runs; i++)
+	{
+		// sicherstellen dass GPU frei ist
+		if (fence)
+		{
+			glClientWaitSync(fence, GL_SYNC_FLUSH_COMMANDS_BIT, UINT64_MAX);
+			glDeleteSync(fence);
+			fence = 0;
+		}
 
-	double before_gpu_prefix_sum = GetTime();
-	GPUPrefixSum();
-	double after_gpu_prefix_sum = GetTime();
+		FillGPUBufferRND(0, rnd_max);
+		CopyBuffers();
 
-	std::cout << "CPU Prefix Sum took: " << ((after_cpu_prefix_sum - before_cpu_prefix_sum) * 1000) << " milliseconds.\n";
-	std::cout << "GPU Prefix Sum took: " << ((after_gpu_prefix_sum - before_gpu_prefix_sum) * 1000) << " milliseconds.\n";
+		glBeginQuery(GL_TIME_ELAPSED, queries[i]);
+
+		GPUPrefixSum();
+
+		glEndQuery(GL_TIME_ELAPSED);
+
+		glFinish();  // nur für Benchmark!
+
+		fence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+		glClientWaitSync(fence, GL_SYNC_FLUSH_COMMANDS_BIT, UINT64_MAX);
+		glDeleteSync(fence);
+		fence = 0;
+
+	}
+
+	// -----------------------------
+	// QUERY RESULTS AUSLESEN
+	// -----------------------------
+	for (uint32_t i = 0; i < num_runs; i++)
+	{
+		GLuint64 time_ns = 0;
+		glGetQueryObjectui64v(queries[i], GL_QUERY_RESULT, &time_ns);
+
+		gpu_times[i] = time_ns / 1e6; // ns -> ms
+	}
+
+	// -----------------------------
+	// STATISTIK
+	// -----------------------------
+	auto compute_stats = [](const std::vector<double>& data)
+		{
+			double sum = 0.0;
+			double min = std::numeric_limits<double>::max();
+			double max = 0.0;
+
+			for (double v : data)
+			{
+				sum += v;
+				min = std::min(min, v);
+				max = std::max(max, v);
+			}
+
+			double avg = sum / data.size();
+
+			return std::tuple<double, double, double>(avg, min, max);
+		};
+
+	auto [cpu_avg, cpu_min, cpu_max] = compute_stats(cpu_times);
+	auto [gpu_avg, gpu_min, gpu_max] = compute_stats(gpu_times);
+
+	// -----------------------------
+	// OUTPUT
+	// -----------------------------
+	std::cout << "\n===== CPU =====\n";
+	std::cout << "Avg: " << cpu_avg << " ms\n";
+	std::cout << "Min: " << cpu_min << " ms\n";
+	std::cout << "Max: " << cpu_max << " ms\n";
+
+	std::cout << "\n===== GPU =====\n";
+	std::cout << "Avg: " << gpu_avg << " ms\n";
+	std::cout << "Min: " << gpu_min << " ms\n";
+	std::cout << "Max: " << gpu_max << " ms\n";
+
+	// Optional: einzelne Runs
+	for (uint32_t i = 0; i < num_runs; i++)
+	{
+		std::cout << "Run " << i + 1
+			<< ": CPU = " << cpu_times[i]
+			<< " ms, GPU = " << gpu_times[i] << " ms\n";
+	}
+
+	glDeleteQueries(num_runs, queries.data());
 
 	if (!CheckBuffer())
 	{
-		std::cout << "CPU and GPU buffers dont match!" << std::endl;
+		std::cout << "Mismatch of buffers! " << std::endl;
 	}
-
-	//PrintBuffer();
 
 	CloseWindow();
 }
